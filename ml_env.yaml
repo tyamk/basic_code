@@ -1,0 +1,14 @@
+name: ml_env
+channels:
+  - conda-forge
+  - defaults
+dependencies:
+  - python=3.7
+  - scikit-learn=0.20.3
+  - pip
+  - pandas
+  - matplotlib
+  - numpy
+  - scipy
+  - pip:
+    - mecab-python3

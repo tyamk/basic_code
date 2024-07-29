@@ -1,0 +1,25 @@
+from sklearn.svm import SVC
+from sklearn.datasets import make_gaussian_quantiles
+from sklearn.model_selection import train_test_split
+from sklearn.metrics import accuracy_score
+
+# データ生成
+X, y = make_gaussian_quantiles(n_features=2, n_classes=2, n_samples=300)
+X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.3, random_state=42)
+# SVMモデル（カーネル法）
+model = SVC()
+# モデルの学習
+model.fit(X_train, y_train)
+# テストデータで予測
+y_pred = model.predict(X_test)
+# 正解率の計算
+prediction = accuracy_score(y_pred, y_test)
+# 正解率の表示
+print(f'正解率: {prediction:.2f}')
+
+"""
+線形カーネル、シグモイドカーネル、多項式カーネル、RBFカーネルなど、さまざまなカーネル関数を使用してSVMを適用することができる。
+カーネル法を用いることで、非線形分類問題にも対応できるため、SVMは非常に汎用性の高いアルゴリズムである。
+ただし、RBFカーネルなどのカーネル関数を使用する場合、わかりやすい決定境界が得られる反面、特徴量の解釈が難しくなる。
+非線形なカーネル関数を利用するのではなく、線形カーネルを利用した分析を行い、データの様子をつかんだ後にカーネル関数を利用することも有効である。
+"""
